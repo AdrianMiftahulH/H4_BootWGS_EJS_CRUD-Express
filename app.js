@@ -56,12 +56,14 @@ const cekDuplikat = (name) => {
     return existAccounts.find(user => user.name === name);
 }
 
+// Mendapatkan nama sesuai di cari
 const findContact = (name) => {
     const contacts = getContact();
     const contact = contacts.find((contact) => contact.name === name);
     return contact;
 }
 
+// Update kontak
 const updateCont = (contBaru) => {
     const contacts = getContact();
     const updateUser = contacts.filter(contact => contact.name !== contBaru.oldnama)
@@ -109,6 +111,7 @@ app.get('/contact/add', (req, res) => {
         cont,
     })
 })
+
 // Menyimpan data baru
 app.post(
     '/contact/add/saveContact',
@@ -154,7 +157,6 @@ app.post(
 app.get('/contact/edit/:name', (req, res) => {
     const contact = findContact(req.params.name)
 
-    //get the name from url
     res.render('edit', {
         title: "Edit Contact",
         layout: 'layout/main',
@@ -162,6 +164,7 @@ app.get('/contact/edit/:name', (req, res) => {
     })
 })
 
+// aksi mengedit data
 app.post(
     '/contact/update',
     [
